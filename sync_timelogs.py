@@ -133,6 +133,11 @@ if __name__ == "__main__":
         )
         sys.exit(1)
 
+    # Preview the upload
+    print("Found these timelogs:")
+    for ticket in grouped:
+        print(f" -> {ticket.date} {ticket.ticket} {ticket.description}")
+
     # This will update Tempo
     if not args.n and click.confirm(
         "\nDo you want to upload these worklogs to Tempo?", default=False
