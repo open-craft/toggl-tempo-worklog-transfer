@@ -3,10 +3,9 @@ import argparse
 import sys
 
 import click
-from datetime import datetime, timedelta, timezone
-from dateutil import parser
+from datetime import datetime
 from decouple import config
-from libtoggl import TogglTimesheets, Timelog
+from libtoggl import TogglTimesheets
 from libtempo import JiraTempoTimelogsDriver
 
 

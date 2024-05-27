@@ -1,8 +1,6 @@
 import re
 from datetime import datetime, timedelta, timezone
 
-from decouple import config
-from requests.models import PreparedRequest
 from toggl.TogglPy import Toggl, Endpoints
 from urllib.parse import urlencode
 from datetime import datetime, timedelta, timezone
@@ -38,11 +36,10 @@ class TogglTimesheets:
         if end_date:
             params["end_date"] = end_date
 
-        # Make request and return
-        return self.toggl.request(Endpoints.TIME_ENTRIES, parameters=params)
+        return self.toggl.request("https://api.track.toggl.com/api/v9/me/time_entries", parameters=params)
 
     def _get_raw_timelogs_last_n_days(self, n_days):
-        last_n_days = datetime.utcnow() - timedelta(days=n_days)
+        last_n_days = datetime.now(timezone.UTC) - timedelta(days=n_days)
         last_n_days_str = last_n_days.replace(
             microsecond=0, tzinfo=timezone.utc
         ).isoformat()
